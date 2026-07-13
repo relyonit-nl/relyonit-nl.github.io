@@ -1,31 +1,75 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>PHI Solutions</title>
-        <style>
-            /* Center the image horizontally and vertically */
-            .center {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100vh;
-            }
-            
-            /* Set the max width and height of the image */
-            img {
-                max-width: 100%;
-                max-height: 100%;
-            }
-            
-            /* Set the background color */
-            body {
-                background-color: #184225;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="center">
-            <img src="phi-solutions-logo-green.png" alt="PHI Solutions">
-        </div>
-    </body>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SimIt</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700&display=swap" rel="stylesheet">
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="%231B2128"/><path d="M47 17 H24 V32 H43 V47 H17" fill="none" stroke="%23F0A028" stroke-width="10" stroke-linecap="square"/></svg>'>
+<style>
+  :root{
+    --bg-0:#14181D; --bg-1:#1B2128; --line:#2C3641;
+    --text-1:#E9EDF2; --amber:#F0A028;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--bg-0);
+    min-height:100vh; min-height:100dvh;
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden;
+  }
+  ::selection{background:var(--amber); color:var(--bg-0)}
+
+  /* ambient trace, full width, behind the lockup */
+  .trace{
+    position:fixed; left:0; right:0; top:50%; transform:translateY(-50%);
+    height:120px; width:100%; pointer-events:none;
+  }
+  .trace path{
+    fill:none; stroke:var(--amber); stroke-width:2; stroke-linecap:square;
+    opacity:.28;
+    stroke-dasharray:2600; stroke-dashoffset:2600;
+    animation:draw 4s cubic-bezier(.25,.1,.25,1) .4s forwards;
+  }
+  @keyframes draw{to{stroke-dashoffset:0}}
+
+  .lockup{
+    position:relative; z-index:1;
+    display:flex; align-items:center; gap:18px;
+    background:var(--bg-0);
+    padding:0 28px;
+    opacity:0; animation:appear 1s ease .2s forwards;
+  }
+  @keyframes appear{to{opacity:1}}
+  .word{
+    font:700 clamp(30px, 5vw, 44px)/1 'Archivo',sans-serif;
+    letter-spacing:-0.01em; color:var(--text-1);
+  }
+  .word .it{color:var(--amber)}
+  .mark{width:clamp(56px, 8vw, 76px); height:auto}
+
+  @media (prefers-reduced-motion:reduce){
+    .trace path{animation:none; stroke-dashoffset:0}
+    .lockup{animation:none; opacity:1}
+  }
+</style>
+</head>
+<body>
+
+<svg class="trace" viewBox="0 0 1400 120" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0 84 H90 V36 H230 V84 H340 V36 H375 V84 H540 V36 H700 V84 H790 V36 H825 V84 H860 V36 H1050 V84 H1170 V36 H1400"/>
+</svg>
+
+<div class="lockup">
+  <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+    <rect x="1" y="1" width="62" height="62" rx="14" fill="#1B2128" stroke="#2C3641" stroke-width="2"/>
+    <path d="M47 17 H24 V32 H43 V47 H17" fill="none" stroke="#F0A028" stroke-width="6" stroke-linecap="square"/>
+    <rect x="44" y="14" width="6" height="6" fill="#F0A028"/>
+  </svg>
+  <span class="word">Sim<span class="it">It</span></span>
+</div>
+
+</body>
 </html>
